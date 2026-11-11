@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/jarvis_background"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ENROLL NEW PROFILE"
+        android:textColor="@color/jarvis_cyan"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:fontFamily="monospace"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/etPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:hint="ENTER FULL NAME (E.G. ANKIT)"
+        android:textColorHint="@color/text_muted"
+        android:textColor="@color/text_primary"
+        android:background="@drawable/hud_panel_background"
+        android:padding="12dp"
+        android:fontFamily="monospace"
+        android:inputType="textPersonName"
+        android:layout_marginBottom="16dp" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="320dp"
+        android:background="@drawable/hud_panel_background"
+        android:layout_marginBottom="16dp">
+
+        <androidx.camera.view.PreviewView
+            android:id="@+id/enrollPreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tvSampleCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAMPLES CAPTURED: 0 / 5"
+            android:textColor="@color/jarvis_cyan"
+            android:background="#CC050B14"
+            android:padding="6dp"
+            android:fontFamily="monospace"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="8dp" />
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/btnCaptureSample"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="CAPTURE FACE SAMPLE"
+        android:background="@drawable/hud_button_border"
+        android:textColor="@color/jarvis_cyan"
+        android:fontFamily="monospace"
+        android:layout_marginBottom="12dp" />
+
+    <Button
+        android:id="@+id/btnSaveProfile"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="SAVE ENROLLMENT TO DATABASE"
+        android:background="@drawable/hud_button_border"
+        android:textColor="@color/jarvis_green_online"
+        android:fontFamily="monospace" />
+
+</LinearLayout>

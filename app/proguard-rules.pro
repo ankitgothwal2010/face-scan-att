@@ -1,0 +1,5 @@
+-keep class org.tensorflow.lite.** { *; }
+-dontwarn org.tensorflow.lite.**
+-keep class com.google.mlkit.vision.face.** { *; }
+-keep class androidx.media3.exoplayer.rtsp.** { *; }
+-keep class com.ankit.jarvisfacescanner.storage.Profile { *; }

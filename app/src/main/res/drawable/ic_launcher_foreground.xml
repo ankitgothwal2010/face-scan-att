@@ -1,0 +1,27 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Outer Cyan Reticle -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="2.5"
+        android:pathData="M34,24 L24,24 L24,34 M74,24 L84,24 L84,34 M24,74 L24,84 L34,84 M84,74 L84,84 L74,84" />
+    <!-- Center Reticle Circle -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#0077FE"
+        android:strokeWidth="1.5"
+        android:pathData="M54,34 A20,20 0 1,0 54,74 A20,20 0 1,0 54,34" />
+    <!-- Stylized Face / Target Core -->
+    <path
+        android:fillColor="#00E5FF"
+        android:pathData="M54,42 A6,6 0 1,0 54,54 A6,6 0 1,0 54,42 Z M42,66 C42,60 48,58 54,58 C60,58 66,60 66,66 Z" />
+    <!-- Crosshairs -->
+    <path
+        android:strokeColor="#00E5FF"
+        android:strokeWidth="1.5"
+        android:pathData="M54,20 L54,28 M54,80 L54,88 M20,54 L28,54 M80,54 L88,54" />
+</vector>

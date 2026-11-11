@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">JARVIS FACE SCANNER</string>
+    <string name="developer_tag">SYSTEM ARCHITECT: ANKIT GOTHWAL</string>
+    <string name="status_system_ready">SYSTEM READY // OFFLINE ENGINE</string>
+    <string name="unknown_person">UNKNOWN PERSON</string>
+    <string name="btn_start_scan">START SCAN</string>
+    <string name="btn_stop_scan">STOP SCAN</string>
+    <string name="btn_enroll">ENROLL PROFILE</string>
+    <string name="btn_profiles">PROFILE DATABASE</string>
+    <string name="btn_settings">SETTINGS</string>
+    <string name="disclaimer_notice">DISCLAIMER: Biometric recognition confidence is an estimate based on cosine distance.</string>
+</resources>
