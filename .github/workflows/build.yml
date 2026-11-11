@@ -1,0 +1,65 @@
+name: Build JARVIS Face Scanner APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+
+      - name: Accept Android SDK Licenses
+        run: |
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+
+      - name: Ensure Model Asset Directory Exists
+        run: |
+          mkdir -p app/src/main/assets/models
+
+      - name: Provision MobileFaceNet TFLite Model
+        run: |
+          if [ ! -f "app/src/main/assets/models/mobilefacenet.tflite" ] || [ $(wc -c < "app/src/main/assets/models/mobilefacenet.tflite" 2>/dev/null || echo 0) -lt 500000 ]; then
+            echo "Downloading MobileFaceNet model..."
+            curl -L -f -o app/src/main/assets/models/mobilefacenet.tflite \
+              https://raw.githubusercontent.com/MCarlomagno/FaceRecognitionAuth/master/assets/mobilefacenet.tflite || \
+            curl -L -f -o app/src/main/assets/models/mobilefacenet.tflite \
+              https://raw.githubusercontent.com/syaringan357/Android-MobileFaceNet-MTCNN-FaceAntiSpoofing/master/app/src/main/assets/MobileFaceNet/MobileFaceNet.tflite
+          fi
+          test -s app/src/main/assets/models/mobilefacenet.tflite || (echo "Notice: model download skipped or failed" && exit 0)
+
+      - name: Ensure Gradle Wrapper Jar
+        run: |
+          if [ ! -f "gradle/wrapper/gradle-wrapper.jar" ]; then
+            mkdir -p gradle/wrapper
+            curl -sLo gradle/wrapper/gradle-wrapper.jar https://raw.githubusercontent.com/gradle/gradle/v8.4.0/gradle/wrapper/gradle-wrapper.jar || gradle wrapper --gradle-version 8.4
+          fi
+
+      - name: Grant Execute Permission to Gradle Wrapper
+        run: chmod +x gradlew
+
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest
+
+      - name: Assemble Debug APK
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Upload Debug APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jarvis-face-scanner-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 14
